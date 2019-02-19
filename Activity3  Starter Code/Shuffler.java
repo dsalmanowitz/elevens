@@ -50,8 +50,8 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void perfectShuffle(int[] values) {
-		int[] top = new int[values/2];
-		int[] bottom = new int[values/2];
+		int[] top = new int[values.length/2];
+		int[] bottom = new int[values.length - values.length/2];
 		int tcount = 0;
 		int bcount = 0;
 		for (int i = 0; i < values.length; i++) {
@@ -84,18 +84,11 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		ArrayList<Integer> selected = new ArrayList<Integer>(52);
-		ArrayList<Integer> unselected = new ArrayList<Integer>(52);
-		int size = 52;
-		for (int value : values) {
-			unselected.add(value);
-		}
-		while (size > 0) {
-			selected.add(unselected.remove(Math.floor(Math.random() * Math.floor(size)));
-			size--;
-		}
-		for (int i = 0; i < values.length; i++) {
-			values[i] = selected.get(i);
-		}
+		for(int k = values.length - 1; k > -1; k--) {
+            int randInt = (int)(Math.random() * k);
+            int temp = values[randInt];
+            values[randInt] = values[k];
+            values[k] = temp;
+        }
 	}
 }
